@@ -14,7 +14,7 @@ class User(UserMixin):
 
 
 def insert_user(userid, password):
-    user_db.insert({"userid": userid, "password": password})
+    user_db.insert({"userid": userid, "password": password, "name": ""})
 
 
 def check_user(userid, password):
@@ -25,7 +25,6 @@ def check_user(userid, password):
 
 
 def exist_user(userid):
-    print(user_db)
     for res in user_db.find({"userid": userid}):
         return True
     return False
