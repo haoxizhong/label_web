@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<script type="text/javascript">
+    /*
+    *增加模板行
+    */
+    var cnt = 0;
+
+    function addRow(name) {
+        cnt += 1;
+        var table = document.getElementById(name);
+        var tbody = document.getElementById(name + "TempleteTBody");
+        var inputBody = document.getElementById(name + "Input")
+        inputBody.name = inputBody.name + cnt;
+        var newTBody = tbody.cloneNode(true);
+        newTBody.style.display = "";
+        var footTBody = document.getElementById(NextWeek + "FootTbody");
+        return table.insertBefore(newTBody, footTBody);
+    }
+
+    /*
+    *删除模板行
+    */
+    function deleteRow(obj) {
+        cnt -= 1;
+        var tbody = obj.parentNode.parentNode.parentNode;
+        var table = document.getElementById("addTable");
+        table.removeChild(tbody);
+    }
+
+    /**
+     *向模板中填充值
+     */
+    function setValue(name) {
+        var tbody = addRow(name);
+    }
+</script>
+<body>
+<form>
+    <div>
+        姓名
+        <input type="text" name="name"/></td>
+    </div>
+    <p>本周已完成工作</p>
+    <input type="button" value="增加" onclick="setValue('ThisWeek')">
+    <table id="ThisWeek">
+        <tbody id="ThisWeekTempleteTBody" style="display: none;">
+        <tr>
+            <td><input type="button" value="删除" onclick="deleteRow(this)"/></td>
+            <td><p value="a"></p></td>
+            <td><input type="text" id="ThisWeekInput"/></td>
+        </tr>
+        </tbody>
+        <tbody id="ThisWeekFootTbody">
+        </tbody>
+    </table>
+    <p>下周工作</p>
+    <input type="button" value="增加" onclick="setValue('NextWeek')">
+    <table id="NextWeek">
+        <tbody id="NextWeekTempleteTBody" style="display: none;">
+        <tr>
+            <td><input type="button" value="删除" onclick="deleteRow(this)"/></td>
+            <td><p value="a"></p></td>
+            <td><input type="text" id="NextWeekInput"/></td>
+        </tr>
+        </tbody>
+        <tbody id="NextWeekFootTbody">
+        </tbody>
+    </table>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

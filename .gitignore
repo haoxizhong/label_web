@@ -1,0 +1,5 @@
+*~
+*.pyc
+.idea
+*.swp
+local_config.py
