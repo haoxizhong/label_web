@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 </head>
 <script type="text/javascript">
     /*
@@ -13,12 +16,15 @@
     function addRow(name) {
         cnt += 1;
         var table = document.getElementById(name);
-        var tbody = document.getElementById(name + "TempleteTBody");
-        var inputBody = document.getElementById(name + "Input")
-        inputBody.name = inputBody.name + cnt;
+        var tbody = document.getElementById(name + "TemplateTBody");
+        var inputBody = document.getElementById(name + "Input");
+        inputBody.name = name + cnt;
+        var deleteButton = document.getElementById(name + "Delete");
+        deleteButton.name = name;
         var newTBody = tbody.cloneNode(true);
         newTBody.style.display = "";
-        var footTBody = document.getElementById(NextWeek + "FootTbody");
+        var footTBody = document.getElementById(name + "FootTbody");
+        inputBody.name = name;
         return table.insertBefore(newTBody, footTBody);
     }
 
@@ -26,9 +32,8 @@
     *删除模板行
     */
     function deleteRow(obj) {
-        cnt -= 1;
         var tbody = obj.parentNode.parentNode.parentNode;
-        var table = document.getElementById("addTable");
+        var table = document.getElementById(obj.name);
         table.removeChild(tbody);
     }
 
@@ -40,38 +45,79 @@
     }
 </script>
 <body>
-<form>
-    <div>
-        姓名
-        <input type="text" name="name"/></td>
+<form method="post" role="form">
+    <div class="container">
+        <div class="form-group">
+
+            <table id="FakeTable1" class="table table-striped">
+            </table>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    姓名
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    <input type="text" name="name" class="form-control"/>
+                </div>
+            </div>
+
+            <table id="FakeTable2" class="table table-striped">
+            </table>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    本周已完成工作
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    <button type="button" class="btn btn-primary form-control" onclick="setValue('ThisWeek')">
+                        增加
+                    </button>
+                </div>
+            </div>
+            <table id="ThisWeek" class="table table-striped">
+                <tbody id="ThisWeekTemplateTBody" style="display: none;">
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-info form-control" id="ThisWeekDelete"
+                                onclick="deleteRow(this)">
+                            删除
+                        </button>
+                    </td>
+                    <td><input type="text" id="ThisWeekInput" class="form-control"/></td>
+                </tr>
+                </tbody>
+                <tbody id="ThisWeekFootTbody">
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    下周工作
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    <button type="button" class="btn btn-primary form-control" onclick="setValue('NextWeek')">
+                        增加
+                    </button>
+                </div>
+            </div>
+            <table id="NextWeek" class="table table-striped">
+                <tbody id="NextWeekTemplateTBody" style="display: none;">
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-info form-control" id="NextWeekDelete"
+                                onclick="deleteRow(this)">
+                            删除
+                        </button>
+                    </td>
+                    <td><input type="text" id="NextWeekInput" class="form-control"/></td>
+                </tr>
+                </tbody>
+                <tbody id="NextWeekFootTbody">
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">提交</button>
+        </div>
     </div>
-    <p>本周已完成工作</p>
-    <input type="button" value="增加" onclick="setValue('ThisWeek')">
-    <table id="ThisWeek">
-        <tbody id="ThisWeekTempleteTBody" style="display: none;">
-        <tr>
-            <td><input type="button" value="删除" onclick="deleteRow(this)"/></td>
-            <td><p value="a"></p></td>
-            <td><input type="text" id="ThisWeekInput"/></td>
-        </tr>
-        </tbody>
-        <tbody id="ThisWeekFootTbody">
-        </tbody>
-    </table>
-    <p>下周工作</p>
-    <input type="button" value="增加" onclick="setValue('NextWeek')">
-    <table id="NextWeek">
-        <tbody id="NextWeekTempleteTBody" style="display: none;">
-        <tr>
-            <td><input type="button" value="删除" onclick="deleteRow(this)"/></td>
-            <td><p value="a"></p></td>
-            <td><input type="text" id="NextWeekInput"/></td>
-        </tr>
-        </tbody>
-        <tbody id="NextWeekFootTbody">
-        </tbody>
-    </table>
-    <input type="submit" value="提交">
 </form>
 </body>
 </html>

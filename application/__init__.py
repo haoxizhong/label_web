@@ -18,8 +18,5 @@ def initialize():
     if os.path.exists(local_config_file):
         app.config.from_pyfile(local_config_file)
 
-    login_manager.init_app(app)
-    login_manager.login_view = "login"
-    login_manager.login_message = "Login!"
 
     from . import route
