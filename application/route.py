@@ -90,6 +90,8 @@ def register():
     else:
         if not ("username" in request.form) or not ("password" in request.form):
             return render_template("register.html")
+        if request.form["username"]=="" or request.form["password"] == "":
+            return render_template("register.html",inf="请输入正确的信息！")
 
         userid = request.form["username"]
         password = request.form["password"]
