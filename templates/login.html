@@ -7,6 +7,11 @@
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
 </head>
+<script>
+function tz(){
+    window.location.href='/register';
+}
+</script>
 <body>
 <form method="post" role="form">
     <div class="container">
@@ -50,11 +55,11 @@
             </table>
 
             <button type="submit" class="btn btn-success">登录</button>
+            <button type="submit" class="btn btn-primary" onclick="tz()">
+                注册
+            </button>
         </div>
     </div>
 </form>
-<button type="submit" class="btn btn-primary" onclick="javascrtpt:window.location.href='/register'">
-    注册
-</button>
 </body>
 </html>
