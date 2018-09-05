@@ -8,9 +8,9 @@
     <script src="/static/js/bootstrap.min.js"></script>
 </head>
 <script>
-function tz(){
-    window.location.href='/register';
-}
+    function tz() {
+        window.location.href = '/register';
+    }
 </script>
 <body>
 <form method="post" role="form">
@@ -55,9 +55,9 @@ function tz(){
             </table>
 
             <button type="submit" class="btn btn-success">登录</button>
-            <button type="submit" class="btn btn-primary" onclick="tz()">
-                注册
-            </button>
+            <input type="submit" class="btn btn-primary" onclick="tz()">
+            注册
+            </input>
         </div>
     </div>
 </form>
