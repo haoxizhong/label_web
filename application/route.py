@@ -69,7 +69,7 @@ def login():
         return render_template("login.html")
     else:
         if not ("username" in request.form) or not ("password" in request.form):
-            return render_template("login.html")
+            return render_template("login.html", inf="请填写用户名和密码！")
 
         userid = request.form["username"]
         password = request.form["password"]
@@ -78,7 +78,7 @@ def login():
             login_user(User(userid), True)
             return redirect("/")
         else:
-            return render_template("login.html")
+            return render_template("login.html", inf="密码错误！")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -90,14 +90,14 @@ def register():
     else:
         if not ("username" in request.form) or not ("password" in request.form):
             return render_template("register.html")
-        if request.form["username"]=="" or request.form["password"] == "":
-            return render_template("register.html",inf="请输入正确的信息！")
+        if request.form["username"] == "" or request.form["password"] == "":
+            return render_template("register.html", inf="请输入正确的信息！")
 
         userid = request.form["username"]
         password = request.form["password"]
 
         if exist_user(userid):
-            UserExistence
+            return render_template("register.html", inf="用户已存在！")
         else:
             insert_user(userid, password)
             return redirect("/login")

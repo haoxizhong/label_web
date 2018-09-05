@@ -17,6 +17,10 @@ def insert_user(userid, password):
     user_db.insert({"userid": userid, "password": password, "name": ""})
 
 
+def update_user(dic):
+    pass
+
+
 def check_user(userid, password):
     for res in user_db.find({"userid": userid}):
         if res["password"] != password:
