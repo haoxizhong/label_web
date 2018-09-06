@@ -9,6 +9,8 @@ import os
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
+    "
+    inf = ""
     if request.method == "POST" and request.form["name"] != "":
         print(request.form)
 
@@ -40,9 +42,9 @@ def home():
 
         print(current_user.username, request.form["name"])
         update_user(current_user.username, request.form["name"])
+        inf = "提交成功！"
 
     name = ""
-    inf = ""
     if request.method == "POST":
         if request.form["name"] != "":
             name = request.form["name"]
