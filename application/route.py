@@ -38,8 +38,8 @@ def home():
 
         f.close()
 
-        print(current_user.userid, request.form["name"])
-        update_user(current_user.userid, request.form["name"])
+        print(current_user.username, request.form["name"])
+        update_user(current_user.username, request.form["name"])
 
     name = ""
     inf = ""
