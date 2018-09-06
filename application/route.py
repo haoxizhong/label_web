@@ -64,11 +64,11 @@ def home():
                 elif line == "下周工作：":
                     round = 1
                 else:
+                    cnt += 1
                     if round == 0:
                         thisWeek.append((cnt, line))
                     else:
                         nextWeek.append((cnt, line))
-                    cnt += 1
 
             f.close()
 
