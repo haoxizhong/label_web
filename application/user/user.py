@@ -17,8 +17,8 @@ def insert_user(userid, password):
     user_db.insert({"userid": userid, "password": password, "name": ""})
 
 
-def update_user(dic):
-    pass
+def update_user(userid, username):
+    user_db.update({"userid": userid}, {"$set": {"name": username}})
 
 
 def check_user(userid, password):

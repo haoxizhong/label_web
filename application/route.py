@@ -9,10 +9,8 @@ import os
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
-    if request.method == "POST":
+    if request.method == "POST" and request.form["name"] != "":
         print(request.form)
-        if request.form["name"] == "":
-            return render_template("main.html", inf="请填写姓名！")
 
         if not (os.path.exists("log")):
             os.makedirs("log", exist_ok=True)
@@ -40,10 +38,42 @@ def home():
 
         f.close()
 
-        return render_template("main.html", inf="提交成功！")
+        print(current_user.userid, request.form["name"])
+        update_user(current_user.userid, request.form["name"])
 
-    else:
-        return render_template("main.html")
+    name = ""
+    inf = ""
+    if request.method == "POST":
+        if request.form["name"] != "":
+            name = request.form["name"]
+        else:
+            inf = "请输入姓名！"
+
+    cnt = 0
+    thisWeek = []
+    nextWeek = []
+    if name != "":
+        if os.path.exists(os.path.join("log", name)):
+            f = open(os.path.join("log", name), "r")
+
+            round = 0
+            for line in f:
+                line = line[:-1]
+                if line == "本周工作：":
+                    round = 0
+                elif line == "下周工作：":
+                    round = 1
+                else:
+                    if round == 0:
+                        thisWeek.append(line)
+                    else:
+                        nextWeek.append(line)
+
+            f.close()
+
+            cnt = len(thisWeek) + len(nextWeek)
+
+    return render_template("main.html", cnt=cnt, inf=inf, thisWeek=thisWeek, nextWeek=nextWeek)
 
 
 @login_manager.user_loader

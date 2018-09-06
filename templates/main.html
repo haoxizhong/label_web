@@ -11,7 +11,7 @@
     /*
     *增加模板行
     */
-    var cnt = 0;
+    var cnt = {{ cnt }};
 
     function addRow(name) {
         cnt += 1;
@@ -102,6 +102,18 @@
                 </tr>
                 </tbody>
                 <tbody id="ThisWeekFootTbody">
+                {% for a in range(0,len(thisWeek)) %}
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-info form-control" id="ThisWeekDelete"
+                                    onclick="deleteRow(this)">
+                                删除
+                            </button>
+                        </td>
+                        <td><input type="text" id="ThisWeekInput{{ a }}" class="form-control"
+                                   value="{{ thisWeek[a] }}"/></td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
 
