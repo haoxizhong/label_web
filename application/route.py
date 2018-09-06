@@ -48,6 +48,9 @@ def home():
             name = request.form["name"]
         else:
             inf = "请输入姓名！"
+    else:
+        user = find_user(current_user.username)
+        name = user.name
 
     cnt = 0
     thisWeek = []
