@@ -9,7 +9,6 @@ import os
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
-    "
     inf = ""
     if request.method == "POST" and request.form["name"] != "":
         print(request.form)
