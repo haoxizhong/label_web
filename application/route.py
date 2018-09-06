@@ -65,9 +65,10 @@ def home():
                     round = 1
                 else:
                     if round == 0:
-                        thisWeek.append(line)
+                        thisWeek.append((cnt, line))
                     else:
-                        nextWeek.append(line)
+                        nextWeek.append((cnt, line))
+                    cnt += 1
 
             f.close()
 
