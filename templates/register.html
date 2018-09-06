@@ -7,9 +7,14 @@
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
 </head>
+<script>
+    function tz() {
+        window.location.href = '/login';
+    }
+</script>
 <body>
-<form method="post" role="form">
-    <div class="container">
+<div class="container">
+    <form method="post" role="form">
         <div class="form-group">
 
             <table id="FakeTable0" class="table table-striped">
@@ -50,7 +55,11 @@
             </table>
             <button type="submit" class="btn btn-success">注册</button>
         </div>
-    </div>
-</form>
+    </form>
+
+    <button type="submit" class="btn btn-primary" onclick="tz()">
+        登录
+    </button>
+</div>
 </body>
 </html>
