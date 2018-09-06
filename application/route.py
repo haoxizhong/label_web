@@ -33,7 +33,7 @@ def home():
         for line in thisWeek:
             print(line, file=f)
         print("下周工作：", file=f)
-        for line in thisWeek:
+        for line in nextWeek:
             print(line, file=f)
 
         f.close()
@@ -74,7 +74,7 @@ def home():
 
             cnt = len(thisWeek) + len(nextWeek)
 
-    return render_template("main.html", cnt=cnt, inf=inf, thisWeek=thisWeek, nextWeek=nextWeek)
+    return render_template("main.html", cnt=cnt, inf=inf, thisWeek=thisWeek, nextWeek=nextWeek, name=name)
 
 
 @login_manager.user_loader
