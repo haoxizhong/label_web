@@ -101,19 +101,21 @@
                     <td><input type="text" id="ThisWeekInput" class="form-control"/></td>
                 </tr>
                 </tbody>
-                <tbody id="ThisWeekFootTbody">
                 {% for name,value in thisWeek %}
+                    <tbody id="ThisWeekTemplateTBody" style="display: none;">
                     <tr>
                         <td>
                             <button type="button" class="btn btn-info form-control" id="ThisWeekDelete"
-                                    onclick="deleteRow(this)">
+                                    onclick="deleteRow(this)" name="ThisWeek">
                                 删除
                             </button>
                         </td>
                         <td><input type="text" id="ThisWeekInput{{ name }}" class="form-control"
                                    value="{{ value }}" name="ThisWeek{{ name }}"/></td>
                     </tr>
+                    </tbody>
                 {% endfor %}
+                <tbody id="ThisWeekFootTbody">
                 </tbody>
             </table>
 
